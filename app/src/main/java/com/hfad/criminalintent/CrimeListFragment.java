@@ -1,8 +1,10 @@
 package com.hfad.criminalintent;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -73,7 +75,9 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            DateFormat df = new DateFormat();
+            String date = df.format("EEEE, dd MMM, yyyy kk:mm:ss", mCrime.getDate()).toString();
+            mDateTextView.setText(date);
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
             if (mCallPoliceButton != null) {
                 mCallPoliceButton.setVisibility(crime.isSolved() ? View.GONE : View.VISIBLE);
