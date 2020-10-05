@@ -4,12 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
@@ -23,8 +21,6 @@ import java.util.GregorianCalendar;
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
 
     public static final String EXTRA_TIME = "com.bignerdranch.android.criminalintent.date";
-
-    private TimePicker mTimePicker;
 
     private static final String ARG_TIME = "com.bignerdranch.android.criminalintent.arg_time";
 
@@ -49,27 +45,19 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_time, null);
 
-        mTimePicker = (TimePicker) v.findViewById(R.id.dialog_time_picker);
-
         return new TimePickerDialog(getActivity(), this, hours, minutes, DateFormat.is24HourFormat(getActivity()));
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         view.findViewById(R.id.dialog_time_picker);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            Date date = (Date) getArguments().getSerializable(ARG_TIME);
+        Date date = (Date) getArguments().getSerializable(ARG_TIME);
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
 
-            Date date1 = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute).getTime();
-            //Date date = (Date) getArguments().getSerializable(ARG_TIME);
-            sendResult(Activity.RESULT_OK, date1);
-        } else {
-            view.setCurrentHour(hourOfDay);
-            view.setCurrentMinute(minute);
-        }
+        Date date1 = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), hourOfDay, minute).getTime();
+        sendResult(Activity.RESULT_OK, date1);
     }
 
     private void sendResult(int resultCode, Date date) {

@@ -76,7 +76,7 @@ public class CrimeListFragment extends Fragment {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             DateFormat df = new DateFormat();
-            String date = df.format("EEEE, dd MMM, yyyy kk:mm:ss", mCrime.getDate()).toString();
+            String date = df.format("EEEE, dd MMM, yyyy kk:mm", mCrime.getDate()).toString();
             mDateTextView.setText(date);
             mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
             if (mCallPoliceButton != null) {
