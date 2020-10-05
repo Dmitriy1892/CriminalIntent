@@ -85,4 +85,9 @@ public class CrimePagerActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+    }
 }
