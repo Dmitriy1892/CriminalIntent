@@ -2,6 +2,7 @@ package com.hfad.criminalintent;
 
 import android.text.format.DateFormat;
 
+import java.security.SecureRandom;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,6 +12,8 @@ public class Crime {
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
+    private String mSuspect;
+
     private boolean mRequiresPolice;
 
     public Crime() {
@@ -48,6 +51,14 @@ public class Crime {
 
     public void setSolved(boolean mSolved) {
         this.mSolved = mSolved;
+    }
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
     }
 
     public boolean isRequiresPolice() {
