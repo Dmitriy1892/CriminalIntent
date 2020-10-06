@@ -248,7 +248,12 @@ public class CrimeFragment extends Fragment {
                 Crime crime = mCrime;
                 CrimeLab crimeLab = CrimeLab.get(getActivity());
                 crimeLab.deleteCrime(crime);
-                getActivity().finish();
+                if (getActivity().
+                        findViewById(R.id.detail_fragment_container) == null) {
+                    getActivity().finish();
+                } else {
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+                }
                 return true;
             default:
                 return false;
