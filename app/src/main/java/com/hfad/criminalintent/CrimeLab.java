@@ -11,6 +11,7 @@ import com.hfad.criminalintent.database.CrimeBaseHelper;
 import com.hfad.criminalintent.database.CrimeCursorWrapper;
 import com.hfad.criminalintent.database.CrimeDbSchema.CrimeTable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
@@ -78,6 +79,11 @@ public class CrimeLab {
         } finally {
             cursor.close();
         }
+    }
+
+    public File getPhotoFile(Crime crime) {
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir, crime.getPhotoFilename());
     }
 
     public void updateCrime(Crime crime) {
